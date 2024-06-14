@@ -22,7 +22,7 @@ jobs:
         with: 
           context: ./src
           file: ./src/Dockerfile
-          push: false
+          push: true
           tags: |
             fabricioveronez/conversao-temperatura-aula:v${{ github.run_number }}
             fabricioveronez/conversao-temperatura-aula:latest
