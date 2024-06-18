@@ -25,7 +25,6 @@ app.get('/fahrenheit/:valor/celsius', (req, res) => {
 });
 
 app.get('/celsius/:valor/fahrenheit', (req, res) => {
-    var teste;
     const { valor } = req.params;
     const fahrenheit = celsiusFahrenheit(valor);
     res.json({ fahrenheit, maquina: os.hostname() });
