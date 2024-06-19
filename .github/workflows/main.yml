@@ -22,6 +22,22 @@ jobs:
       - name: Execução do ESLint
         run: eslint 
         working-directory: ./src
+
+      - name: Criação da pasta resultados
+        run: mkdir resultados
+
+      - name: Validação do Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: ./src/Dockerfile
+          no-fail: true
+          output-file: resultados/hadolint-docker-fileimage-results.sarif
+          format: sarif
+
+      - uses: actions/upload-artifact@v4
+        with:
+          path: resultados
+          name: erros
         
       - name: Docker Login
         uses: docker/login-action@v3.1.0
