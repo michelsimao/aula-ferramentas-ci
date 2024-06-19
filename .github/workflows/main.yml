@@ -54,3 +54,20 @@ jobs:
           tags: |
             fabricioveronez/conversao-temperatura-aula:v${{ github.run_number }}
             fabricioveronez/conversao-temperatura-aula:latest
+
+      - name: Scan da Imagem Docker
+        uses: aquasecurity/trivy-action@0.20.0
+        with:
+          image-ref: fabricioveronez/conversao-temperatura-aula:v${{ github.run_number }}
+          format: 'sarif'
+          exit-code: 0
+          scan-type: 'image'
+          severity: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
+          output: 'resultados/trivy-dockerimage-results.sarif'
+
+      - name: Upload arquivo sarif
+        uses: github/codeql-action/upload-sarif
+        with:
+          sarif_file: resultados
+          category: ferramentas
+  
