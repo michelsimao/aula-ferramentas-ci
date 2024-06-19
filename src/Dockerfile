@@ -1,7 +1,7 @@
-FROM node
+FROM node:v20.12.0
 WORKDIR /app
-ADD package*.json ./
+COPY package*.json ./
 RUN npm install
-ADD . .
+COPY . .
 EXPOSE 8080
 CMD ["node", "server.js"]
