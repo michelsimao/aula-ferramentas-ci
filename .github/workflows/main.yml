@@ -6,7 +6,11 @@ on:
 jobs:
   CI:
     runs-on: ubuntu-latest
-      
+    permissions: 
+      packages: write
+      security-events: write
+      id-token: write
+  
     steps:
       - name: Obtendo o código fonte
         uses: actions/checkout@v4.1.2
